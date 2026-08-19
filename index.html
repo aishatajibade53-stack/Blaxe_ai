@@ -1,73 +1,250 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#07111f" />
-  <title>BLAXE AI</title>
-  <link rel="stylesheet" href="/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>BLAXE AI — By Bashiru Fodlulahi</title>
+
+  <meta
+    name="description"
+    content="BLAXE AI — a personal AI assistant created by Bashiru Fodlulahi."
+  >
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div class="app-shell">
-    <aside class="sidebar" id="sidebar">
-      <div class="brand">
-        <div class="brand-mark">B</div>
+
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">B</div>
+
+      <div>
+        <strong>BLAXE AI</strong>
+        <small>by Bashiru Fodlulahi</small>
+      </div>
+    </div>
+
+    <button class="new-chat" id="newChat">
+      ＋ New Chat
+    </button>
+
+    <div class="sidebar-section">
+      <small>BLAXE AI</small>
+
+      <button class="side-link" data-prompt="Give me some business ideas">
+        💼 Business
+      </button>
+
+      <button class="side-link" data-prompt="Give me some creative ideas">
+        💡 Ideas
+      </button>
+
+      <button class="side-link" data-prompt="Help me learn something new">
+        📚 Learning
+      </button>
+
+      <button class="side-link" data-prompt="Help me write something professional">
+        ✍️ Writing
+      </button>
+
+      <button class="side-link" data-prompt="Help me with coding">
+        💻 Coding
+      </button>
+    </div>
+
+    <div class="sidebar-bottom">
+      <button class="side-link" id="clearBtn">
+        🗑 Clear Chat
+      </button>
+
+      <div class="creator">
+        <strong>Created by</strong>
+        <span>Bashiru Fodlulahi</span>
+      </div>
+    </div>
+
+  </aside>
+
+
+  <main class="main">
+
+    <header class="topbar">
+
+      <button
+        class="menu-btn"
+        id="menuBtn"
+        aria-label="Open menu"
+      >
+        ☰
+      </button>
+
+      <div class="top-brand">
+        <div class="brand-mark small">B</div>
+
         <div>
           <strong>BLAXE AI</strong>
-          <span>Personal AI platform</span>
+          <small>Personal AI Assistant</small>
         </div>
       </div>
-      <button class="new-chat" id="newChat">＋ New chat</button>
-      <div class="side-section">
-        <div class="side-title">AI tools</div>
-        <button class="tool-btn" data-prompt="Help me brainstorm 10 strong ideas for a new business.">💡 Ideas</button>
-        <button class="tool-btn" data-prompt="Act as a professional writing assistant. Improve my text while keeping my meaning.">✍️ Writing</button>
-        <button class="tool-btn" data-prompt="Act as a senior software engineer and help me solve this coding problem.">💻 Coding</button>
-        <button class="tool-btn" data-prompt="Teach me this topic step by step in a simple way, then quiz me.">📚 Learn</button>
-        <button class="tool-btn" data-prompt="Help me create a professional business plan for this idea.">📈 Business</button>
-      </div>
-      <div class="sidebar-bottom">
-        <div class="status-dot"><i></i> AI online</div>
-        <small>BLAXE AI v1.0</small>
-      </div>
-    </aside>
 
-    <main class="main">
-      <header class="topbar">
-        <button class="icon-btn" id="menuBtn" aria-label="Menu">☰</button>
-        <div class="mobile-brand"><span class="mini-b">B</span> BLAXE AI</div>
-        <button class="icon-btn" id="clearBtn" title="Clear chat">⌫</button>
-      </header>
+      <div class="creator-badge">
+        By Bashiru Fodlulahi
+      </div>
 
-      <section class="chat" id="chat">
-        <div class="welcome" id="welcome">
-          <div class="hero-mark">B</div>
-          <h1>Welcome to <span>BLAXE AI</span></h1>
-          <p>Your personal AI assistant for ideas, writing, coding, learning, research and more.</p>
-          <div class="cards">
-            <button class="starter" data-prompt="Give me 10 creative business ideas I can start with a small budget."><b>💡</b><span>Generate ideas</span><small>Find your next big idea</small></button>
-            <button class="starter" data-prompt="Write a professional introduction for my brand BLAXEART."><b>✍️</b><span>Write something</span><small>Create polished content</small></button>
-            <button class="starter" data-prompt="Teach me how APIs work like I am a beginner."><b>📚</b><span>Learn a topic</span><small>Understand anything</small></button>
-            <button class="starter" data-prompt="Help me build a simple mobile app and explain the steps."><b>💻</b><span>Build with code</span><small>Plan and debug projects</small></button>
-          </div>
+    </header>
+
+
+    <section class="chat" id="chat">
+
+      <div class="welcome" id="welcome">
+
+        <div class="hero-icon">
+          B
         </div>
-      </section>
 
-      <div class="composer-wrap">
-        <div class="attachment" id="attachment"></div>
-        <form class="composer" id="composer">
-          <label class="attach-btn" title="Analyze an image">
-            ＋
-            <input type="file" id="imageInput" accept="image/png,image/jpeg,image/webp" hidden />
-          </label>
-          <textarea id="input" rows="1" placeholder="Message BLAXE AI..." autocomplete="off"></textarea>
-          <button class="web-btn" type="button" id="webBtn" title="Toggle web research">⌁ Web</button>
-          <button class="send-btn" type="submit" id="sendBtn" aria-label="Send">➤</button>
-        </form>
-        <div class="composer-note">BLAXE AI can make mistakes. Check important information.</div>
+        <h1>
+          Welcome to <span>BLAXE AI</span>
+        </h1>
+
+        <p>
+          Your personal AI assistant for ideas, writing,
+          coding, learning, business and more.
+        </p>
+
+        <div class="created">
+          Created by <strong>Bashiru Fodlulahi</strong>
+        </div>
+
+
+        <div class="prompt-grid">
+
+          <button
+            class="prompt-card"
+            data-prompt="Give me 10 creative business ideas I can start with little money."
+          >
+            <span>💼</span>
+            <strong>Business ideas</strong>
+            <small>Discover new opportunities</small>
+          </button>
+
+          <button
+            class="prompt-card"
+            data-prompt="Give me 10 creative ideas for my next project."
+          >
+            <span>💡</span>
+            <strong>Get ideas</strong>
+            <small>Brainstorm something amazing</small>
+          </button>
+
+          <button
+            class="prompt-card"
+            data-prompt="Teach me something useful in a simple way."
+          >
+            <span>📚</span>
+            <strong>Learn</strong>
+            <small>Understand difficult topics</small>
+          </button>
+
+          <button
+            class="prompt-card"
+            data-prompt="Help me write a professional social media caption."
+          >
+            <span>✍️</span>
+            <strong>Write</strong>
+            <small>Create better content</small>
+          </button>
+
+        </div>
+
       </div>
-    </main>
-  </div>
-  <script src="/app.js"></script>
+
+    </section>
+
+
+    <footer class="composer-area">
+
+      <div
+        class="attachment"
+        id="attachment"
+        aria-live="polite"
+      ></div>
+
+
+      <form class="composer" id="composer">
+
+        <label
+          class="attach-btn"
+          title="Attach image"
+        >
+          📎
+
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            hidden
+          >
+        </label>
+
+
+        <textarea
+          id="input"
+          rows="1"
+          placeholder="Message BLAXE AI..."
+          autocomplete="off"
+        ></textarea>
+
+
+        <button
+          type="button"
+          class="web-btn"
+          id="webBtn"
+          title="Web mode"
+        >
+          🌐
+        </button>
+
+
+        <button
+          type="submit"
+          class="send-btn"
+          id="sendBtn"
+          aria-label="Send message"
+        >
+          ➤
+        </button>
+
+      </form>
+
+
+      <div class="composer-note">
+        BLAXE AI can make mistakes. Check important information.
+      </div>
+
+    </footer>
+
+
+    <footer class="site-footer">
+
+      <strong>BLAXE AI</strong>
+
+      <span>•</span>
+
+      <span>Created by Bashiru Fodlulahi</span>
+
+      <span>•</span>
+
+      <span>© 2026</span>
+
+    </footer>
+
+  </main>
+
+
+  <script src="app.js"></script>
+
 </body>
 </html>
