@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <title>BLAXE AI — By Bashiru Fodlulahi</title>
 
@@ -11,66 +15,118 @@
     content="BLAXE AI — a personal AI assistant created by Bashiru Fodlulahi."
   >
 
+  <!-- Website style -->
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA / App installation -->
+  <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#0b5cff">
+
+  <link
+    rel="apple-touch-icon"
+    href="icon-192.png"
+  >
 </head>
 
 <body>
 
+  <!-- SIDEBAR -->
   <aside class="sidebar" id="sidebar">
 
     <div class="brand">
-      <div class="brand-mark">B</div>
+
+      <div class="brand-mark">
+        B
+      </div>
 
       <div>
         <strong>BLAXE AI</strong>
         <small>by Bashiru Fodlulahi</small>
       </div>
+
     </div>
 
-    <button class="new-chat" id="newChat">
+
+    <button
+      class="new-chat"
+      id="newChat"
+    >
       ＋ New Chat
     </button>
 
+
     <div class="sidebar-section">
+
       <small>BLAXE AI</small>
 
-      <button class="side-link" data-prompt="Give me some business ideas">
+      <button
+        class="side-link"
+        data-prompt="Give me some business ideas"
+      >
         💼 Business
       </button>
 
-      <button class="side-link" data-prompt="Give me some creative ideas">
+      <button
+        class="side-link"
+        data-prompt="Give me some creative ideas"
+      >
         💡 Ideas
       </button>
 
-      <button class="side-link" data-prompt="Help me learn something new">
+      <button
+        class="side-link"
+        data-prompt="Help me learn something new"
+      >
         📚 Learning
       </button>
 
-      <button class="side-link" data-prompt="Help me write something professional">
+      <button
+        class="side-link"
+        data-prompt="Help me write something professional"
+      >
         ✍️ Writing
       </button>
 
-      <button class="side-link" data-prompt="Help me with coding">
+      <button
+        class="side-link"
+        data-prompt="Help me with coding"
+      >
         💻 Coding
       </button>
+
     </div>
 
+
     <div class="sidebar-bottom">
-      <button class="side-link" id="clearBtn">
+
+      <button
+        class="side-link"
+        id="clearBtn"
+      >
         🗑 Clear Chat
       </button>
 
+
       <div class="creator">
+
         <strong>Created by</strong>
-        <span>Bashiru Fodlulahi</span>
+
+        <span>
+          Bashiru Fodlulahi
+        </span>
+
       </div>
+
     </div>
 
   </aside>
 
 
+  <!-- MAIN APP -->
   <main class="main">
 
+    <!-- TOP BAR -->
     <header class="topbar">
 
       <button
@@ -81,14 +137,27 @@
         ☰
       </button>
 
+
       <div class="top-brand">
-        <div class="brand-mark small">B</div>
+
+        <div class="brand-mark small">
+          B
+        </div>
 
         <div>
-          <strong>BLAXE AI</strong>
-          <small>Personal AI Assistant</small>
+
+          <strong>
+            BLAXE AI
+          </strong>
+
+          <small>
+            Personal AI Assistant
+          </small>
+
         </div>
+
       </div>
+
 
       <div class="creator-badge">
         By Bashiru Fodlulahi
@@ -97,64 +166,167 @@
     </header>
 
 
-    <section class="chat" id="chat">
+    <!-- CHAT -->
+    <section
+      class="chat"
+      id="chat"
+    >
 
-      <div class="welcome" id="welcome">
+      <div
+        class="welcome"
+        id="welcome"
+      >
 
         <div class="hero-icon">
           B
         </div>
 
+
         <h1>
-          Welcome to <span>BLAXE AI</span>
+          Welcome to
+          <span>BLAXE AI</span>
         </h1>
 
+
         <p>
-          Your personal AI assistant for ideas, writing,
-          coding, learning, business and more.
+          Your personal AI assistant for ideas,
+          writing, coding, learning, business
+          and more.
         </p>
 
+
         <div class="created">
-          Created by <strong>Bashiru Fodlulahi</strong>
+
+          Created by
+
+          <strong>
+            Bashiru Fodlulahi
+          </strong>
+
         </div>
 
 
+        <!-- PROMPT CARDS -->
         <div class="prompt-grid">
+
 
           <button
             class="prompt-card"
-            data-prompt="Give me 10 creative business ideas I can start with little money."
+            data-prompt="Create 10 unique business names for me."
           >
-            <span>💼</span>
-            <strong>Business ideas</strong>
-            <small>Discover new opportunities</small>
+
+            <span>
+              💼
+            </span>
+
+            <strong>
+              Business
+            </strong>
+
+            <small>
+              Create business ideas and names
+            </small>
+
           </button>
+
 
           <button
             class="prompt-card"
             data-prompt="Give me 10 creative ideas for my next project."
           >
-            <span>💡</span>
-            <strong>Get ideas</strong>
-            <small>Brainstorm something amazing</small>
+
+            <span>
+              💡
+            </span>
+
+            <strong>
+              Ideas
+            </strong>
+
+            <small>
+              Brainstorm something amazing
+            </small>
+
           </button>
+
 
           <button
             class="prompt-card"
             data-prompt="Teach me something useful in a simple way."
           >
-            <span>📚</span>
-            <strong>Learn</strong>
-            <small>Understand difficult topics</small>
+
+            <span>
+              📚
+            </span>
+
+            <strong>
+              Learn
+            </strong>
+
+            <small>
+              Understand difficult topics
+            </small>
+
           </button>
+
 
           <button
             class="prompt-card"
-            data-prompt="Help me write a professional social media caption."
+            data-prompt="Write a professional social media caption for me."
           >
-            <span>✍️</span>
-            <strong>Write</strong>
-            <small>Create better content</small>
+
+            <span>
+              ✍️
+            </span>
+
+            <strong>
+              Writing
+            </strong>
+
+            <small>
+              Create better content
+            </small>
+
+          </button>
+
+
+          <button
+            class="prompt-card"
+            data-prompt="Help me create a simple website."
+          >
+
+            <span>
+              💻
+            </span>
+
+            <strong>
+              Coding
+            </strong>
+
+            <small>
+              Build and understand code
+            </small>
+
+          </button>
+
+
+          <button
+            class="prompt-card"
+            data-prompt="Give me a plan for starting a small business."
+          >
+
+            <span>
+              🚀
+            </span>
+
+            <strong>
+              Start a project
+            </strong>
+
+            <small>
+              Turn an idea into a plan
+            </small>
+
           </button>
 
         </div>
@@ -164,7 +336,9 @@
     </section>
 
 
+    <!-- MESSAGE BOX -->
     <footer class="composer-area">
+
 
       <div
         class="attachment"
@@ -173,12 +347,18 @@
       ></div>
 
 
-      <form class="composer" id="composer">
+      <form
+        class="composer"
+        id="composer"
+      >
 
+
+        <!-- IMAGE BUTTON -->
         <label
           class="attach-btn"
           title="Attach image"
         >
+
           📎
 
           <input
@@ -187,9 +367,11 @@
             accept="image/*"
             hidden
           >
+
         </label>
 
 
+        <!-- MESSAGE INPUT -->
         <textarea
           id="input"
           rows="1"
@@ -198,6 +380,7 @@
         ></textarea>
 
 
+        <!-- WEB BUTTON -->
         <button
           type="button"
           class="web-btn"
@@ -208,6 +391,7 @@
         </button>
 
 
+        <!-- SEND BUTTON -->
         <button
           type="submit"
           class="send-btn"
@@ -217,34 +401,88 @@
           ➤
         </button>
 
+
       </form>
 
 
       <div class="composer-note">
-        BLAXE AI can make mistakes. Check important information.
+
+        BLAXE AI can make mistakes.
+        Check important information.
+
       </div>
 
     </footer>
 
 
+    <!-- FOOTER -->
     <footer class="site-footer">
 
-      <strong>BLAXE AI</strong>
+      <strong>
+        BLAXE AI
+      </strong>
 
-      <span>•</span>
+      <span>
+        •
+      </span>
 
-      <span>Created by Bashiru Fodlulahi</span>
+      <span>
+        Created by Bashiru Fodlulahi
+      </span>
 
-      <span>•</span>
+      <span>
+        •
+      </span>
 
-      <span>© 2026</span>
+      <span>
+        © 2026
+      </span>
 
     </footer>
 
   </main>
 
 
+  <!-- JAVASCRIPT -->
   <script src="app.js"></script>
+
+
+  <!-- APP INSTALL SUPPORT -->
+  <script>
+
+    let deferredPrompt = null;
+
+
+    window.addEventListener(
+      "beforeinstallprompt",
+      function(event) {
+
+        event.preventDefault();
+
+        deferredPrompt = event;
+
+        console.log(
+          "BLAXE AI can be installed."
+        );
+
+      }
+    );
+
+
+    window.addEventListener(
+      "appinstalled",
+      function() {
+
+        deferredPrompt = null;
+
+        console.log(
+          "BLAXE AI installed successfully."
+        );
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
