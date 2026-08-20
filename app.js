@@ -1,38 +1,41 @@
+```javascript
 // BLAXE AI
-// Browser AI — No OpenAI API
+// Browser AI - No OpenAI API
 // Created by Bashiru Fodlulahi
 
-let generator = null;
-let loadingModel = false;
-let messages = [];
+const MODEL = "onnx-community/Qwen2.5-0.5B-Instruct";
 
-const MODEL = "Mozilla/Qwen2.5-0.5B-Instruct";
+let generator = null;
+let loading = false;
+let messages = [];
 
 const chat = document.getElementById("chat");
 const welcome = document.getElementById("welcome");
 const form = document.getElementById("composer");
 const input = document.getElementById("input");
 const sendBtn = document.getElementById("sendBtn");
-const attachment = document.getElementById("attachment");
 
 
-// ------------------------------------
-// BASIC HELPERS
-// ------------------------------------
+// ----------------------------------------
+// SCROLL
+// ----------------------------------------
 
 function scrollToBottom() {
-  requestAnimationFrame(() => {
-    if (chat) {
-      chat.scrollTop = chat.scrollHeight;
-    }
+  if (!chat) return;
 
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: "smooth"
-    });
+  requestAnimationFrame(() => {
+    chat.scrollTop = chat.scrollHeight;
+
+    setTimeout(() => {
+      chat.scrollTop = chat.scrollHeight;
+    }, 100);
   });
 }
 
+
+// ----------------------------------------
+// TEXT FORMAT
+// ----------------------------------------
 
 function escapeHTML(text) {
   return String(text)
@@ -43,27 +46,19 @@ function escapeHTML(text) {
 
 
 function formatText(text) {
-  let output = escapeHTML(text);
-
-  output = output.replace(
-    /\*\*(.*?)\*\*/g,
-    "<strong>$1</strong>"
-  );
-
-  output = output.replace(
-    /\n/g,
-    "<br>"
-  );
-
-  return output;
+  return escapeHTML(text)
+    .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+    .replace(/\n/g, "<br>");
 }
 
 
-// ------------------------------------
-// DISPLAY MESSAGES
-// ------------------------------------
+// ----------------------------------------
+// ADD MESSAGE
+// ----------------------------------------
 
 function addMessage(role, text) {
+
+  if (!chat) return;
 
   if (welcome) {
     welcome.style.display = "none";
@@ -77,7 +72,8 @@ function addMessage(role, text) {
       : "message assistant";
 
 
-  const avatar = document.createElement("div");
+  const avatar =
+    document.createElement("div");
 
   avatar.className = "avatar";
 
@@ -87,7 +83,8 @@ function addMessage(role, text) {
       : "B";
 
 
-  const bubble = document.createElement("div");
+  const bubble =
+    document.createElement("div");
 
   bubble.className = "bubble";
 
@@ -96,7 +93,6 @@ function addMessage(role, text) {
 
 
   row.appendChild(avatar);
-
   row.appendChild(bubble);
 
   chat.appendChild(row);
@@ -105,9 +101,9 @@ function addMessage(role, text) {
 }
 
 
-// ------------------------------------
-// TYPING INDICATOR
-// ------------------------------------
+// ----------------------------------------
+// TYPING
+// ----------------------------------------
 
 function showTyping() {
 
@@ -132,6 +128,7 @@ function showTyping() {
     </div>
   `;
 
+
   chat.appendChild(row);
 
   scrollToBottom();
@@ -140,20 +137,20 @@ function showTyping() {
 
 function removeTyping() {
 
-  const typing =
+  const item =
     document.getElementById(
       "blaxe-typing"
     );
 
-  if (typing) {
-    typing.remove();
+  if (item) {
+    item.remove();
   }
 }
 
 
-// ------------------------------------
-// LOAD AI MODEL
-// ------------------------------------
+// ----------------------------------------
+// LOAD MODEL
+// ----------------------------------------
 
 async function loadModel() {
 
@@ -161,42 +158,49 @@ async function loadModel() {
     return generator;
   }
 
-  if (loadingModel) {
 
-    while (loadingModel) {
+  if (loading) {
+
+    while (loading) {
+
       await new Promise(
         resolve =>
           setTimeout(resolve, 300)
       );
+
     }
 
     return generator;
   }
 
 
-  if (!window.BLAXE_AI_PIPELINE) {
+  if (
+    typeof window.BLAXE_AI_PIPELINE !==
+    "function"
+  ) {
 
     throw new Error(
-      "The browser AI engine has not loaded yet."
+      "Transformers.js has not loaded. Refresh the page and try again."
     );
+
   }
 
 
-  loadingModel = true;
-
-
-  addMessage(
-    "assistant",
-    "I'm preparing BLAXE AI on this device. The first startup may take a while because the AI model needs to download."
-  );
+  loading = true;
 
 
   try {
 
+    addMessage(
+      "assistant",
+      "⏳ BLAXE AI is starting for the first time. Please wait while the AI model loads on your device."
+    );
+
+
     let device = "wasm";
 
     if (
-      "gpu" in navigator
+      navigator.gpu
     ) {
       device = "webgpu";
     }
@@ -207,109 +211,94 @@ async function loadModel() {
         "text-generation",
         MODEL,
         {
-          device: device,
-          dtype: "q4"
+          dtype: "q4",
+          device: device
         }
       );
 
 
-    removeTyping();
-
     addMessage(
       "assistant",
-      "✅ BLAXE AI is ready. You can start asking questions."
+      "✅ BLAXE AI is ready. Ask me anything."
     );
 
 
     return generator;
 
+
   } catch (error) {
 
     console.error(
-      "BLAXE AI model error:",
+      "Model loading error:",
       error
     );
-
 
     generator = null;
 
     throw error;
 
+
   } finally {
 
-    loadingModel = false;
+    loading = false;
 
   }
 }
 
 
-// ------------------------------------
-// BUILD CONVERSATION
-// ------------------------------------
+// ----------------------------------------
+// CONVERSATION
+// ----------------------------------------
 
-function buildMessages() {
+function buildConversation() {
 
-  const systemMessage = {
-    role: "system",
-    content:
-      `You are BLAXE AI, a helpful personal AI assistant created by Bashiru Fodlulahi.
+  return [
 
-Be friendly, accurate and useful.
+    {
+      role: "system",
 
-Help with:
-- business
-- writing
-- coding
-- mathematics
-- learning
-- brainstorming
-- planning
-- technology
-- everyday questions
+      content:
+        `You are BLAXE AI, a helpful AI assistant created by Bashiru Fodlulahi.
 
 Answer the user's actual question.
 
-Do not say that you are a demo.
+You can help with:
+business, writing, coding, learning, mathematics, ideas, planning, technology and everyday questions.
 
-Do not claim that you are ChatGPT.
+Be friendly and useful.
 
-Keep answers reasonably concise unless the user asks for detail.`
-  };
+Never say that you are a demo.
 
+Never tell the user that you cannot answer simply because you are a demo.
 
-  const recent =
-    messages.slice(-12);
+Give the best answer you can.`
+    },
 
+    ...messages.slice(-10)
 
-  return [
-    systemMessage,
-    ...recent.map(message => ({
-      role: message.role,
-      content: message.content
-    }))
   ];
 }
 
 
-// ------------------------------------
-// GENERATE AI RESPONSE
-// ------------------------------------
+// ----------------------------------------
+// GENERATE RESPONSE
+// ----------------------------------------
 
-async function generateAIResponse() {
+async function generateResponse() {
 
   const pipe =
     await loadModel();
 
 
   const conversation =
-    buildMessages();
+    buildConversation();
 
 
   const result =
     await pipe(
       conversation,
       {
-        max_new_tokens: 300,
+        max_new_tokens: 256,
         temperature: 0.7,
         top_p: 0.9,
         do_sample: true
@@ -317,54 +306,65 @@ async function generateAIResponse() {
     );
 
 
-  let generated = "";
+  if (
+    !result ||
+    !result.length
+  ) {
+
+    throw new Error(
+      "The AI returned an empty response."
+    );
+
+  }
+
+
+  const generated =
+    result[0].generated_text;
+
+
+  let answer = "";
 
 
   if (
-    Array.isArray(result) &&
-    result.length > 0
+    Array.isArray(generated)
   ) {
 
-    const item = result[0];
+    const last =
+      generated[
+        generated.length - 1
+      ];
 
+    answer =
+      last?.content || "";
 
-    if (
-      Array.isArray(item.generated_text)
-    ) {
+  } else {
 
-      const last =
-        item.generated_text[
-          item.generated_text.length - 1
-        ];
-
-      generated =
-        last?.content || "";
-
-    } else {
-
-      generated =
-        item.generated_text || "";
-
-    }
+    answer =
+      String(generated || "");
 
   }
 
 
-  if (!generated) {
+  answer =
+    answer.trim();
 
-    generated =
-      "I couldn't generate a response. Please try again.";
+
+  if (!answer) {
+
+    throw new Error(
+      "The AI generated an empty response."
+    );
 
   }
 
 
-  return String(generated).trim();
+  return answer;
 }
 
 
-// ------------------------------------
-// SEND MESSAGE
-// ------------------------------------
+// ----------------------------------------
+// SEND
+// ----------------------------------------
 
 async function sendMessage(text) {
 
@@ -374,6 +374,11 @@ async function sendMessage(text) {
 
   if (!text) {
     return;
+  }
+
+
+  if (sendBtn) {
+    sendBtn.disabled = true;
   }
 
 
@@ -395,19 +400,7 @@ async function sendMessage(text) {
   });
 
 
-  if (messages.length > 20) {
-    messages =
-      messages.slice(-20);
-  }
-
-
-  localStorage.setItem(
-    "blaxe_messages",
-    JSON.stringify(messages)
-  );
-
-
-  sendBtn.disabled = true;
+  saveMessages();
 
 
   showTyping();
@@ -416,7 +409,7 @@ async function sendMessage(text) {
   try {
 
     const answer =
-      await generateAIResponse();
+      await generateResponse();
 
 
     removeTyping();
@@ -434,15 +427,15 @@ async function sendMessage(text) {
     });
 
 
-    localStorage.setItem(
-      "blaxe_messages",
-      JSON.stringify(messages)
-    );
+    saveMessages();
 
 
   } catch (error) {
 
-    console.error(error);
+    console.error(
+      "BLAXE AI ERROR:",
+      error
+    );
 
 
     removeTyping();
@@ -450,17 +443,16 @@ async function sendMessage(text) {
 
     addMessage(
       "assistant",
-      `I couldn't start the browser AI model yet.
-
-Please refresh the page and try again.
-
-If this is your first time using BLAXE AI, make sure you have a good internet connection because the model needs to download to your device.`
+      "⚠️ BLAXE AI could not generate a response yet. The browser AI model may still be downloading or your device may not support the selected AI engine. Please wait a little, refresh the page, and try again."
     );
 
   }
 
 
-  sendBtn.disabled = false;
+  if (sendBtn) {
+    sendBtn.disabled = false;
+  }
+
 
   input.focus();
 
@@ -468,9 +460,99 @@ If this is your first time using BLAXE AI, make sure you have a good internet co
 }
 
 
-// ------------------------------------
+// ----------------------------------------
+// SAVE
+// ----------------------------------------
+
+function saveMessages() {
+
+  try {
+
+    localStorage.setItem(
+      "blaxe_messages",
+      JSON.stringify(messages)
+    );
+
+  } catch (error) {
+
+    console.warn(
+      "Could not save chat:",
+      error
+    );
+
+  }
+}
+
+
+// ----------------------------------------
+// LOAD SAVED CHAT
+// ----------------------------------------
+
+function loadMessages() {
+
+  try {
+
+    const saved =
+      localStorage.getItem(
+        "blaxe_messages"
+      );
+
+
+    if (!saved) {
+      return;
+    }
+
+
+    const parsed =
+      JSON.parse(saved);
+
+
+    if (!Array.isArray(parsed)) {
+      return;
+    }
+
+
+    messages = parsed;
+
+
+    messages.forEach(
+      message => {
+
+        if (
+          message.role === "user" ||
+          message.role === "assistant"
+        ) {
+
+          addMessage(
+            message.role,
+            message.content
+          );
+
+        }
+
+      }
+    );
+
+
+    scrollToBottom();
+
+
+  } catch (error) {
+
+    console.warn(
+      "Could not restore chat:",
+      error
+    );
+
+    messages = [];
+
+  }
+}
+
+
+// ----------------------------------------
 // FORM
-// ------------------------------------
+// ----------------------------------------
 
 if (form) {
 
@@ -490,9 +572,9 @@ if (form) {
 }
 
 
-// ------------------------------------
-// ENTER TO SEND
-// ------------------------------------
+// ----------------------------------------
+// ENTER
+// ----------------------------------------
 
 if (input) {
 
@@ -536,9 +618,9 @@ if (input) {
 }
 
 
-// ------------------------------------
+// ----------------------------------------
 // PROMPT BUTTONS
-// ------------------------------------
+// ----------------------------------------
 
 document
   .querySelectorAll(
@@ -566,9 +648,9 @@ document
   });
 
 
-// ------------------------------------
+// ----------------------------------------
 // NEW CHAT
-// ------------------------------------
+// ----------------------------------------
 
 document
   .getElementById("newChat")
@@ -598,15 +680,17 @@ document
       }
 
 
+      scrollToBottom();
+
       input.focus();
 
     }
   );
 
 
-// ------------------------------------
+// ----------------------------------------
 // CLEAR CHAT
-// ------------------------------------
+// ----------------------------------------
 
 document
   .getElementById("clearBtn")
@@ -639,9 +723,9 @@ document
   );
 
 
-// ------------------------------------
+// ----------------------------------------
 // MOBILE MENU
-// ------------------------------------
+// ----------------------------------------
 
 document
   .getElementById("menuBtn")
@@ -659,60 +743,18 @@ document
   );
 
 
-// ------------------------------------
-// RESTORE MEMORY
-// ------------------------------------
+// ----------------------------------------
+// START
+// ----------------------------------------
 
-try {
-
-  const saved =
-    localStorage.getItem(
-      "blaxe_messages"
-    );
-
-
-  if (saved) {
-
-    messages =
-      JSON.parse(saved);
-
-
-    messages.forEach(
-      message => {
-
-        if (
-          message.role === "user" ||
-          message.role === "assistant"
-        ) {
-
-          addMessage(
-            message.role,
-            message.content
-          );
-
-        }
-
-      }
-    );
-
-  }
-
-} catch (error) {
-
-  messages = [];
-
-}
-
-
-// ------------------------------------
-// STARTUP
-// ------------------------------------
+loadMessages();
 
 console.log(
-  "BLAXE AI browser engine initialized."
+  "BLAXE AI loaded."
 );
 
 console.log(
-  "Model:",
+  "Browser model:",
   MODEL
 );
+```
