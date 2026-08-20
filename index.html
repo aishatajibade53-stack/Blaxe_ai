@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,23 +15,21 @@
     content="BLAXE AI — a personal AI assistant created by Bashiru Fodlulahi."
   >
 
+  <!-- Website style -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Installable app -->
+  <link rel="manifest" href="manifest.json">
+
   <meta
     name="theme-color"
     content="#0b5cff"
   >
 
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-
-  <!-- Website style -->
-  <link rel="stylesheet" href="style.css">
-
-  <!-- App icon -->
   <link
     rel="apple-touch-icon"
     href="icon-192.png"
   >
-
 </head>
 
 <body>
@@ -53,15 +50,12 @@
 
     </div>
 
-
     <button
       class="new-chat"
       id="newChat"
-      type="button"
     >
       ＋ New Chat
     </button>
-
 
     <div class="sidebar-section">
 
@@ -70,7 +64,6 @@
       <button
         class="side-link"
         data-prompt="Create 10 unique business names for me."
-        type="button"
       >
         💼 Business
       </button>
@@ -78,7 +71,6 @@
       <button
         class="side-link"
         data-prompt="Give me 10 creative ideas for my next project."
-        type="button"
       >
         💡 Ideas
       </button>
@@ -86,7 +78,6 @@
       <button
         class="side-link"
         data-prompt="Teach me something useful in a simple way."
-        type="button"
       >
         📚 Learning
       </button>
@@ -94,7 +85,6 @@
       <button
         class="side-link"
         data-prompt="Help me write something professional."
-        type="button"
       >
         ✍️ Writing
       </button>
@@ -102,33 +92,24 @@
       <button
         class="side-link"
         data-prompt="Help me with coding."
-        type="button"
       >
         💻 Coding
       </button>
 
     </div>
 
-
     <div class="sidebar-bottom">
 
       <button
         class="side-link"
         id="clearBtn"
-        type="button"
       >
         🗑 Clear Chat
       </button>
 
-
       <div class="creator">
-
         <strong>Created by</strong>
-
-        <span>
-          Bashiru Fodlulahi
-        </span>
-
+        <span>Bashiru Fodlulahi</span>
       </div>
 
     </div>
@@ -136,9 +117,8 @@
   </aside>
 
 
-  <!-- MAIN APP -->
+  <!-- MAIN -->
   <main class="main">
-
 
     <!-- TOP BAR -->
     <header class="topbar">
@@ -146,12 +126,10 @@
       <button
         class="menu-btn"
         id="menuBtn"
-        type="button"
         aria-label="Open menu"
       >
         ☰
       </button>
-
 
       <div class="top-brand">
 
@@ -160,30 +138,11 @@
         </div>
 
         <div>
-
-          <strong>
-            BLAXE AI
-          </strong>
-
-          <small>
-            Personal AI Assistant
-          </small>
-
+          <strong>BLAXE AI</strong>
+          <small>Personal AI Assistant</small>
         </div>
 
       </div>
-
-
-      <!-- INSTALL BUTTON -->
-      <button
-        id="installApp"
-        class="install-app"
-        type="button"
-        style="display:none;"
-      >
-        📱 Install BLAXE AI
-      </button>
-
 
       <div class="creator-badge">
         By Bashiru Fodlulahi
@@ -192,14 +151,12 @@
     </header>
 
 
-    <!-- CHAT AREA -->
+    <!-- CHAT -->
     <section
       class="chat"
       id="chat"
     >
 
-
-      <!-- WELCOME -->
       <div
         class="welcome"
         id="welcome"
@@ -209,12 +166,9 @@
           B
         </div>
 
-
         <h1>
-          Welcome to
-          <span>BLAXE AI</span>
+          Welcome to <span>BLAXE AI</span>
         </h1>
-
 
         <p>
           Your personal AI assistant for ideas,
@@ -222,147 +176,73 @@
           and more.
         </p>
 
-
         <div class="created">
-
           Created by
-
-          <strong>
-            Bashiru Fodlulahi
-          </strong>
-
+          <strong>Bashiru Fodlulahi</strong>
         </div>
 
 
-        <!-- PROMPT CARDS -->
+        <!-- PROMPTS -->
         <div class="prompt-grid">
-
 
           <button
             class="prompt-card"
             data-prompt="Create 10 unique business names for me."
-            type="button"
           >
-
-            <span>
-              💼
-            </span>
-
-            <strong>
-              Business
-            </strong>
-
-            <small>
-              Create business ideas and names
-            </small>
-
+            <span>💼</span>
+            <strong>Business</strong>
+            <small>Create business ideas and names</small>
           </button>
 
 
           <button
             class="prompt-card"
             data-prompt="Give me 10 creative ideas for my next project."
-            type="button"
           >
-
-            <span>
-              💡
-            </span>
-
-            <strong>
-              Ideas
-            </strong>
-
-            <small>
-              Brainstorm something amazing
-            </small>
-
+            <span>💡</span>
+            <strong>Ideas</strong>
+            <small>Brainstorm something amazing</small>
           </button>
 
 
           <button
             class="prompt-card"
             data-prompt="Teach me something useful in a simple way."
-            type="button"
           >
-
-            <span>
-              📚
-            </span>
-
-            <strong>
-              Learn
-            </strong>
-
-            <small>
-              Understand difficult topics
-            </small>
-
+            <span>📚</span>
+            <strong>Learn</strong>
+            <small>Understand difficult topics</small>
           </button>
 
 
           <button
             class="prompt-card"
             data-prompt="Write a professional social media caption for me."
-            type="button"
           >
-
-            <span>
-              ✍️
-            </span>
-
-            <strong>
-              Writing
-            </strong>
-
-            <small>
-              Create better content
-            </small>
-
+            <span>✍️</span>
+            <strong>Writing</strong>
+            <small>Create better content</small>
           </button>
 
 
           <button
             class="prompt-card"
             data-prompt="Help me create a simple website."
-            type="button"
           >
-
-            <span>
-              💻
-            </span>
-
-            <strong>
-              Coding
-            </strong>
-
-            <small>
-              Build and understand code
-            </small>
-
+            <span>💻</span>
+            <strong>Coding</strong>
+            <small>Build and understand code</small>
           </button>
 
 
           <button
             class="prompt-card"
             data-prompt="Give me a plan for starting a small business."
-            type="button"
           >
-
-            <span>
-              🚀
-            </span>
-
-            <strong>
-              Start a project
-            </strong>
-
-            <small>
-              Turn an idea into a plan
-            </small>
-
+            <span>🚀</span>
+            <strong>Start a project</strong>
+            <small>Turn an idea into a plan</small>
           </button>
-
 
         </div>
 
@@ -371,9 +251,8 @@
     </section>
 
 
-    <!-- COMPOSER -->
+    <!-- MESSAGE COMPOSER -->
     <footer class="composer-area">
-
 
       <div
         class="attachment"
@@ -387,8 +266,7 @@
         id="composer"
       >
 
-
-        <!-- IMAGE ATTACHMENT -->
+        <!-- IMAGE -->
         <label
           class="attach-btn"
           title="Attach image"
@@ -406,7 +284,7 @@
         </label>
 
 
-        <!-- MESSAGE -->
+        <!-- TEXT -->
         <textarea
           id="input"
           rows="1"
@@ -415,7 +293,7 @@
         ></textarea>
 
 
-        <!-- WEB BUTTON -->
+        <!-- WEB -->
         <button
           type="button"
           class="web-btn"
@@ -436,15 +314,12 @@
           ➤
         </button>
 
-
       </form>
 
 
       <div class="composer-note">
-
         BLAXE AI can make mistakes.
         Check important information.
-
       </div>
 
     </footer>
@@ -453,28 +328,17 @@
     <!-- FOOTER -->
     <footer class="site-footer">
 
-      <strong>
-        BLAXE AI
-      </strong>
+      <strong>BLAXE AI</strong>
 
-      <span>
-        •
-      </span>
+      <span>•</span>
 
-      <span>
-        Created by Bashiru Fodlulahi
-      </span>
+      <span>Created by Bashiru Fodlulahi</span>
 
-      <span>
-        •
-      </span>
+      <span>•</span>
 
-      <span>
-        © 2026
-      </span>
+      <span>© 2026</span>
 
     </footer>
-
 
   </main>
 
@@ -482,9 +346,10 @@
   <!--
     BROWSER AI ENGINE
 
-    This loads Transformers.js.
-    The AI model can run on the user's
-    device instead of using an OpenAI API.
+    Transformers.js runs compatible AI models
+    directly in the user's browser.
+
+    No OpenAI API key is placed in this website.
   -->
 
   <script type="module">
@@ -494,53 +359,20 @@
     } from
     "https://cdn.jsdelivr.net/npm/@huggingface/transformers@4.0.1";
 
-
-    window.BLAXE_AI_PIPELINE =
-      pipeline;
-
-
-    console.log(
-      "BLAXE AI browser AI engine loaded."
-    );
+    window.BLAXE_AI_PIPELINE = pipeline;
 
   </script>
 
 
-  <!-- BLAXE AI APPLICATION -->
+  <!-- BLAXE AI application -->
   <script src="app.js"></script>
 
 
-  <!-- PWA INSTALLATION -->
+  <!-- PWA INSTALL SUPPORT -->
   <script>
 
     let deferredPrompt = null;
 
-
-    const installButton =
-      document.getElementById(
-        "installApp"
-      );
-
-
-    /*
-      Keep the install button hidden
-      until the browser says the app
-      is installable.
-    */
-
-    if (installButton) {
-
-      installButton.style.display =
-        "none";
-
-    }
-
-
-    /*
-      Android Chrome / compatible browsers
-      send this event when the PWA can
-      be installed.
-    */
 
     window.addEventListener(
       "beforeinstallprompt",
@@ -550,82 +382,19 @@
 
         deferredPrompt = event;
 
-
-        if (installButton) {
-
-          installButton.style.display =
-            "block";
-
-        }
+        console.log(
+          "BLAXE AI is ready to be installed."
+        );
 
       }
     );
 
-
-    /*
-      When the user taps Install.
-    */
-
-    if (installButton) {
-
-      installButton.addEventListener(
-        "click",
-        async function() {
-
-          if (!deferredPrompt) {
-
-            alert(
-              "BLAXE AI can be installed from your browser menu. Tap the three dots ⋮ and choose Install app or Add to Home screen."
-            );
-
-            return;
-
-          }
-
-
-          deferredPrompt.prompt();
-
-
-          const result =
-            await deferredPrompt.userChoice;
-
-
-          console.log(
-            "BLAXE AI installation:",
-            result.outcome
-          );
-
-
-          deferredPrompt = null;
-
-
-          installButton.style.display =
-            "none";
-
-        }
-      );
-
-    }
-
-
-    /*
-      App successfully installed.
-    */
 
     window.addEventListener(
       "appinstalled",
       function() {
 
         deferredPrompt = null;
-
-
-        if (installButton) {
-
-          installButton.style.display =
-            "none";
-
-        }
-
 
         console.log(
           "BLAXE AI installed successfully."
@@ -634,50 +403,7 @@
       }
     );
 
-
-    /*
-      Register service worker if
-      sw.js exists in the repository.
-    */
-
-    if (
-      "serviceWorker" in navigator
-    ) {
-
-      window.addEventListener(
-        "load",
-        function() {
-
-          navigator.serviceWorker
-            .register("sw.js")
-            .then(
-              function() {
-
-                console.log(
-                  "BLAXE AI service worker registered."
-                );
-
-              }
-            )
-            .catch(
-              function(error) {
-
-                console.log(
-                  "Service worker not registered yet:",
-                  error
-                );
-
-              }
-            );
-
-        }
-      );
-
-    }
-
   </script>
 
-
 </body>
-</html>
-```
+  </html>
